@@ -6,7 +6,7 @@ import { AuthContext } from "./context/AuthProvider";
 
 function App() {
   const [user, setUser] = useState(null);
-  const authData = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
 
   // Check if the user is logged in on page load
@@ -24,8 +24,8 @@ function App() {
     if (email === "admin@me.com" && password === "123") {
       setUser("admin");
       localStorage.setItem('loggedInUser', JSON.stringify({ role: "admin" }));
-    } else if (authData) {
-      const employee = authData.employees.find((e) => email === e.email && e.password === password);
+    } else if (userData) {
+      const employee = userData.employees.find((e) => email === e.email && e.password === password);
       if (employee) {
         setUser("employee");
         setLoggedInUserData(employee);

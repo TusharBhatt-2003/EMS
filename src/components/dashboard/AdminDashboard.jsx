@@ -5,10 +5,10 @@ import Header from '../comps/Header';
 import { AuthContext } from '../../context/AuthProvider';
 
 const AdminDashboard = ({ handleLogout }) => {
-  const authData = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
 
   // Calculate the total number of new tasks
-  const totalNewTasks = authData.employees.reduce((total, employee) => {
+  const totalNewTasks = userData.employees.reduce((total, employee) => {
     const newTaskCount = employee.tasks.filter(task => task.newTask).length;
     return total + newTaskCount;
   }, 0);
